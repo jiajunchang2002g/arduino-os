@@ -4,6 +4,7 @@
 #define NUM_TASKS   2
 #define STACK_SIZE  128
 #define BAUD_RATE 115200
+#define U32_STR_LEN 11
 
 typedef struct {
     uint8_t *sp;
@@ -267,18 +268,34 @@ static void uart_puts(const char *s)
         uart_putc(*s++);
 }
 
-void task1()
+static void u32toa(uint32_t v, char *buf)
+{
+    char tmp[10];
+    uint8_t i = 0;
+
+    do
+    {
+        tmp[i++] = '0' + (v % 10);
+        v /= 10;
+    }
+    while (v);
+
+    while (i)
+        *buf++ = tmp[--i];
+
+    *buf = '\0';
+}
+
+void task1(void)
 {
     char msg[LOG_SIZE];
+    char num[U32_STR_LEN];
 
     while (1)
     {
-        snprintf(
-            msg,
-            sizeof(msg),
-            "task1 count=%lu",
-            count1++
-        );
+        strcpy(msg, "task1 count=");
+        u32toa(count1++, num);
+        strcat(msg, num);
 
         enqueue_log(msg);
 
@@ -286,22 +303,20 @@ void task1()
     }
 }
 
-void task2()
+void task1(void)
 {
     char msg[LOG_SIZE];
+    char num[U32_STR_LEN];
 
     while (1)
     {
-        snprintf(
-            msg,
-            sizeof(msg),
-            "task2 count=%lu",
-            count2++
-        );
+        strcpy(msg, "task2 count=");
+        u32toa(count2++, num);
+        strcat(msg, num);
 
         enqueue_log(msg);
 
-        busy_loop(120000);
+        busy_loop(50000);
     }
 }
 
