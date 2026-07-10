@@ -3,6 +3,7 @@
 
 #define NUM_TASKS   2
 #define STACK_SIZE  128
+#define BAUD_RATE 115200
 
 typedef struct {
     uint8_t *sp;
@@ -242,6 +243,30 @@ void busy_loop(uint32_t count)
     }
 }
 
+static void uart_init(void)
+{
+    UBRR0H = 0;
+    UBRR0L = 8;                  // 115200 baud @ 16MHz
+
+    UCSR0A = 0;
+    UCSR0B = (1 << TXEN0);       // TX enable
+    UCSR0C = (1 << UCSZ01) | (1 << UCSZ00); // 8N1
+}
+
+static void uart_putc(char c)
+{
+    while (!(UCSR0A & (1 << UDRE0)))
+        ;
+
+    UDR0 = c;
+}
+
+static void uart_puts(const char *s)
+{
+    while (*s)
+        uart_putc(*s++);
+}
+
 void task1()
 {
     char msg[LOG_SIZE];
@@ -280,7 +305,7 @@ void task2()
     }
 }
 
-void printer_task()
+void printer_task(void)
 {
     char msg[LOG_SIZE];
 
@@ -288,16 +313,16 @@ void printer_task()
     {
         if (dequeue_log(msg))
         {
-            Serial.println(msg);
+            uart_puts(msg);
+            uart_puts("\r\n");
         }
-
         busy_loop(1000);
     }
 }
 
 void setup()
 {
-    Serial.begin(115200);
+    uart_init();
 
     create_task(0, task1);
     create_task(1, task2);
