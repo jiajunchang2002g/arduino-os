@@ -40,7 +40,8 @@ bool dequeueLog(char *out)
         return false;
     }
 
-    strcpy(out, (char *)logQueue[logTail].text);
+    strncpy(out, (char *)logQueue[logTail].text, LOG_SIZE - 1);
+    out[LOG_SIZE - 1] = '\0';
     logTail = (logTail + 1) % LOG_ENTRIES;
     SREG = sreg;
     return true;
