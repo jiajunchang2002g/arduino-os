@@ -89,7 +89,6 @@ static volatile uint8_t createdTasks = 0;
         "pop r0             \n\t"          \
         "out __SREG__, r0   \n\t"          \
         "pop r0             \n\t"          \
-        "clr r1             \n\t"          \
         "reti               \n\t"          \
     )
 

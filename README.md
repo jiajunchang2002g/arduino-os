@@ -4,9 +4,9 @@ This repository now exposes a tiny cooperative/preemptive-style RTOS core as an 
 
 ## Structure
 
-- `/home/runner/work/arduino-os/arduino-os/src/ArduinoRTOS.h` - public API
-- `/home/runner/work/arduino-os/arduino-os/src/ArduinoRTOS.cpp` - scheduler/context switching implementation
-- `/home/runner/work/arduino-os/arduino-os/main.ino` - simple usage example with 3 tasks
+- `src/ArduinoRTOS.h` - public API
+- `src/ArduinoRTOS.cpp` - scheduler/context switching implementation
+- `main.ino` - simple usage example with 3 tasks
 
 ## API
 
