@@ -2,6 +2,8 @@
 
 This is an Arduino library for a tiny cooperative/preemptive-style Real-Time Operating System (RTOS) !
 
+<img width="600" height="450" alt="image" src="https://github.com/user-attachments/assets/8b22ecfc-3451-4549-9b5a-7113a9cc757d" />
+
 ## Structure
 
 - `src/ArduinoRTOS.h` - public API
