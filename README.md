@@ -1,4 +1,4 @@
-# Arduino RTOS
+# arduino-os
 
 This is an Arduino library for a tiny cooperative/preemptive-style Real-Time Operating System (RTOS) !
 
