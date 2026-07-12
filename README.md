@@ -1,6 +1,6 @@
-# Arduino RTOS (Minimal)
+# Arduino RTOS
 
-This repository now exposes a tiny cooperative/preemptive-style RTOS core as an Arduino library.
+This is an Arduino library for a tiny cooperative/preemptive-style Real-Time Operating System (RTOS) !
 
 ## Structure
 
