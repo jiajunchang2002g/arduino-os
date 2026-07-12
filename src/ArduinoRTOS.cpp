@@ -117,7 +117,7 @@ bool createTask(TaskEntry entry)
     *sp-- = 0x00;
     *sp-- = 0x80;
 
-    for (int reg = 1; reg <= 31; reg++)
+    for (int registerIndex = 1; registerIndex <= 31; registerIndex++)
     {
         *sp-- = 0x00;
     }
