@@ -2,6 +2,9 @@
 
 This is an Arduino library for a tiny cooperative/preemptive-style Real-Time Operating System (RTOS) !
 
+## Spec
+- Arduin UNO R3 board with Atmega328p processor (2Kb SRAM)
+
 ## Structure
 
 - `src/ArduinoRTOS.h` - public API
@@ -34,5 +37,10 @@ ArduinoRTOS::start();
 
 - `ArduinoRTOS::MAX_TASKS` is currently `3`.
 - Each task gets `ArduinoRTOS::STACK_SIZE` bytes of stack.
+
+
+## References
+- https://docs.arduino.cc/hardware/uno-rev3/#features
+- https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf
 - Tasks must run forever (typically `while(1)` loops).
 - Example output is written through UART at 115200 baud.
